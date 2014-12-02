@@ -4,7 +4,7 @@
 
     <groupId>org.springframework.social</groupId>
     <artifactId>spring-social-instagram</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>1.0.1</version>
 
     <name>spring-social-instagram</name>
     <description>Spring Social Instagram</description>
@@ -90,7 +90,7 @@
     <scm>
         <connection>scm:git:git@bitbucket.org:kasur/spring-social-instagram.git</connection>
         <developerConnection>scm:git:git@bitbucket.org:kasur/spring-social-instagram.git</developerConnection>
-        <tag>release</tag>
+        <tag>v1.0.1</tag>
     </scm>
 
 </project>
