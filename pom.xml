@@ -80,6 +80,7 @@
                         <preparationGoals>clean verify</preparationGoals>
                         <goals>deploy</goals>
                         <useReleaseProfile>false</useReleaseProfile>
+                        <pushChanges>false</pushChanges>
                     </configuration>
                 </plugin>
             </plugins>
@@ -89,7 +90,7 @@
     <scm>
         <connection>scm:git:git@bitbucket.org:kasur/spring-social-instagram.git</connection>
         <developerConnection>scm:git:git@bitbucket.org:kasur/spring-social-instagram.git</developerConnection>
-      <tag>HEAD</tag>
-  </scm>
+        <tag>release</tag>
+    </scm>
 
 </project>
