@@ -48,6 +48,7 @@
             <id>staging.repo.snapshots</id>
             <name>Staging Repository - Snapshots</name>
             <url>${distribution.staging.snapshots.url}</url>
+            <uniqueVersion>false</uniqueVersion>
         </snapshotRepository>
         <repository>
             <id>staging.repo.releases</id>
