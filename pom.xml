@@ -81,6 +81,7 @@
                         <goals>deploy</goals>
                         <useReleaseProfile>false</useReleaseProfile>
                         <pushChanges>false</pushChanges>
+                        <dryRun>true</dryRun>
                     </configuration>
                 </plugin>
             </plugins>
