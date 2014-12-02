@@ -80,8 +80,6 @@
                         <preparationGoals>clean verify</preparationGoals>
                         <goals>deploy</goals>
                         <useReleaseProfile>false</useReleaseProfile>
-                        <!--<dryRun>true</dryRun>
-                        <pushChanges>false</pushChanges>-->
                     </configuration>
                 </plugin>
             </plugins>
