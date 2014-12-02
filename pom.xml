@@ -8,7 +8,7 @@
     <artifactId>spring-social-instagram</artifactId>
     <version>1.0.0-SNAPSHOT</version>
 
-    <name>update-service-cache</name>
+    <name>spring-social-instagram</name>
     <description>Spring Social Instagram</description>
 
     <developers>
