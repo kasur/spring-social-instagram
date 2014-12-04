@@ -34,6 +34,10 @@
         <maven-compile-plugin-version>3.2</maven-compile-plugin-version>
         <maven-release-plugin-version>2.5.1</maven-release-plugin-version>
 
+        <!--dependencies versions-->
+        <spring-social-version>1.1.0.RELEASE</spring-social-version>
+        <faster-xml-version>2.4.0</faster-xml-version>
+
         <!--distribution props for private staging cycle-->
         <distribution.staging.snapshots.url>
             file:///home/kasur/coding/maven-repo/snapshots
@@ -56,6 +60,45 @@
             <url>${distribution.staging.releases.url}</url>
         </repository>
     </distributionManagement>
+
+    <dependencies>
+
+        <!--spring social deps-->
+        <dependency>
+            <groupId>org.springframework.social</groupId>
+            <artifactId>spring-social-core</artifactId>
+            <version>${spring-social-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.social</groupId>
+            <artifactId>spring-social-security</artifactId>
+            <version>${spring-social-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.social</groupId>
+            <artifactId>spring-social-config</artifactId>
+            <version>${spring-social-version}</version>
+        </dependency>
+
+
+        <!--jackson deps-->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>${faster-xml-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${faster-xml-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>${faster-xml-version}</version>
+        </dependency>
+
+    </dependencies>
 
     <build>
         <pluginManagement>
