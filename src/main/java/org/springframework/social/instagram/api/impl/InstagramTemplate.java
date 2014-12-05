@@ -11,7 +11,10 @@ import org.springframework.social.instagram.api.impl.json.InstagramModule;
 import org.springframework.social.oauth2.AbstractOAuth2ApiBinding;
 import org.springframework.social.oauth2.OAuth2Version;
 import org.springframework.social.support.ClientHttpRequestFactorySelector;
+import org.springframework.social.support.URIBuilder;
 import org.springframework.web.client.RestTemplate;
+
+import java.util.Objects;
 
 /**
  * <p>This is the central class for interacting with Instagram.</p>
@@ -38,6 +41,12 @@ public class InstagramTemplate extends AbstractOAuth2ApiBinding implements Insta
 
     private ObjectMapper objectMapper;
 
+    private final String clientId;
+
+    private final String clientSecret;
+
+    private final String accessToken;
+
     /**
      * Create a new instance of InstagramTemplate.
      * This constructor creates a new InstagramTemplate able to perform unauthenticated operations against Instagram's API.
@@ -46,7 +55,11 @@ public class InstagramTemplate extends AbstractOAuth2ApiBinding implements Insta
      * A InstagramTemplate created with this constructor will support those operations.
      * Those operations requiring authentication will throw {@link NotAuthorizedException}.
      */
-    public InstagramTemplate() {
+    public InstagramTemplate(final String clientId, final String clientSecret) {
+        /*this.clientId = Objects.requireNonNull(clientId, "[Client id is required]");
+        this.clientSecret = Objects.requireNonNull(clientSecret, "[Client secret is required as  ]");
+        this.accessToken = null;*/
+        this(clientId, clientSecret, null);
         initialize();
     }
 
@@ -54,15 +67,18 @@ public class InstagramTemplate extends AbstractOAuth2ApiBinding implements Insta
     /**
      * Create a new instance of InstagramTemplate.
      * This constructor creates the InstagramTemplate using a given access token.
-     * @param accessToken An access token given by Instagram after a successful OAuth 2 authentication (or through Instagram's JS library).
+     * @param accessToken An access token given by Instagram after a successful OAuth 2 authentication.
      */
-    public InstagramTemplate(String accessToken) {
-        this(accessToken, null);
+    public InstagramTemplate(String clientId, String clientSecret, String accessToken) {
+        this(clientId, clientSecret, accessToken, "basic");
     }
 
-    public InstagramTemplate(String accessToken, String applicationScope) {
+    public InstagramTemplate(String clientId, String clientSecret, String accessToken, String applicationScope) {
         super(accessToken);
         this.applicationScope = applicationScope;
+        this.clientId = Objects.requireNonNull(clientId, "[Client id is required]");
+        this.clientSecret = Objects.requireNonNull(clientSecret, "[Client secret is required as  ]");
+        this.accessToken = accessToken;
         initialize();
     }
 
@@ -108,6 +124,12 @@ public class InstagramTemplate extends AbstractOAuth2ApiBinding implements Insta
     @Override
     protected void configureRestTemplate(RestTemplate restTemplate) {
         restTemplate.setErrorHandler(new InstagramErrorHandler());
+    }
+
+    public URIBuilder withAccessToken(String uri) {
+        return (accessToken == null)
+                ? URIBuilder.fromUri(uri).queryParam("client_id", clientId)
+                : URIBuilder.fromUri(uri).queryParam("access_token", accessToken);
     }
 
     @Override

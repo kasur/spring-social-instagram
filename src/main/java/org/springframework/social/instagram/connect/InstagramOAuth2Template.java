@@ -12,6 +12,7 @@ public class InstagramOAuth2Template extends OAuth2Template {
                 "https://api.instagram.com/oauth/authorize",
                 "https://api.instagram.com/oauth/access_token"
         );
+        //setUseParametersForClientAuthentication(true);
     }
 
 }

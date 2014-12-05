@@ -3,11 +3,10 @@ package org.springframework.social.instagram.config.support;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.social.UserIdSource;
-import org.springframework.social.instagram.api.Instagram;
-import org.springframework.social.instagram.api.impl.InstagramTemplate;
 import org.springframework.social.config.xml.ApiHelper;
 import org.springframework.social.connect.Connection;
 import org.springframework.social.connect.UsersConnectionRepository;
+import org.springframework.social.instagram.api.Instagram;
 
 /**
  * Support class for JavaConfig and XML configuration support.
@@ -37,7 +36,10 @@ public class InstagramApiHelper implements ApiHelper<Instagram> {
         if (logger.isDebugEnabled() && connection == null) {
             logger.debug("No current connection; Returning default InstagramTemplate instance.");
         }
-        return connection != null ? connection.getApi() : new InstagramTemplate();
+        if (connection == null) {
+            throw new IllegalArgumentException("[Instagram template without client id is not supported. As there is no user connection return null]");
+        }
+        return connection.getApi();
     }
 
     private final static Log logger = LogFactory.getLog(InstagramApiHelper.class);

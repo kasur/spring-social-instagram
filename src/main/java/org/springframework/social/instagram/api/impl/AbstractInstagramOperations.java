@@ -1,7 +1,6 @@
 package org.springframework.social.instagram.api.impl;
 
 import org.springframework.social.MissingAuthorizationException;
-import org.springframework.social.support.URIBuilder;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 
@@ -39,14 +38,8 @@ abstract class AbstractInstagramOperations {
         return buildUri(path, EMPTY_PARAMETERS);
     }
 
-    protected URI buildUri(String path, String parameterName, String parameterValue) {
-        MultiValueMap<String, String> parameters = new LinkedMultiValueMap<>();
-        parameters.set(parameterName, parameterValue);
-        return buildUri(path, parameters);
-    }
-
     protected URI buildUri(String path, MultiValueMap<String, String> parameters) {
-        return URIBuilder.fromUri(API_URL_BASE + path).queryParams(parameters).build();
+        return instagramTemplate.withAccessToken(API_URL_BASE + path).queryParams(parameters).build();
     }
 
     private static final String API_URL_BASE = "https://api.instagram.com/v1/";

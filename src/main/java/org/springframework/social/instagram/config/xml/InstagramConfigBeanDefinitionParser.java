@@ -12,7 +12,7 @@ import java.util.Map;
 
 /**
  * Implementation of {@link org.springframework.social.config.xml.AbstractProviderConfigBeanDefinitionParser} that creates a {@link InstagramConnectionFactory}.
- * @author Craig Walls
+ * @author erusak
  */
 public class InstagramConfigBeanDefinitionParser extends AbstractProviderConfigBeanDefinitionParser {
 

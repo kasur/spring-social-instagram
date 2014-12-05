@@ -13,14 +13,19 @@ import org.springframework.social.oauth2.AbstractOAuth2ServiceProvider;
 public class InstagramServiceProvider extends AbstractOAuth2ServiceProvider<Instagram> {
 
     private final String scope;
+    private final String clientId;
+    private final String clientSecret;
+
 
     public InstagramServiceProvider(String clientId, String clientSecret, String scope) {
         super( new InstagramOAuth2Template(clientId, clientSecret) );
         this.scope = scope;
+        this.clientId = clientId;
+        this.clientSecret = clientSecret;
     }
 
     @Override
     public Instagram getApi(String accessToken) {
-        return new InstagramTemplate(accessToken, scope);
+        return new InstagramTemplate(clientId, clientSecret, accessToken, scope);
     }
 }

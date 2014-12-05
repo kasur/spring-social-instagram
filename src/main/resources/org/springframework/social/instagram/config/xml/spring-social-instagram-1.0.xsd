@@ -7,7 +7,7 @@
         <xs:complexType>
             <xs:attribute name="app-id" use="required" type="xs:string" />
             <xs:attribute name="app-secret" use="required" type="xs:string" />
-            <xs:attribute name="app-scope" use="optional" type="xs:string" />
+            <xs:attribute name="app-scope" use="optional" type="xs:string" default="basic"/>
         </xs:complexType>
     </xs:element>
 
