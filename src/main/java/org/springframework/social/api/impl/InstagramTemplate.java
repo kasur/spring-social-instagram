@@ -1,11 +1,17 @@
 package org.springframework.social.api.impl;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.social.NotAuthorizedException;
 import org.springframework.social.api.Instagram;
+import org.springframework.social.api.MediaOperations;
 import org.springframework.social.api.TagOperations;
 import org.springframework.social.api.UserOperations;
+import org.springframework.social.api.impl.json.InstagramModule;
 import org.springframework.social.oauth2.AbstractOAuth2ApiBinding;
+import org.springframework.social.oauth2.OAuth2Version;
 import org.springframework.social.support.ClientHttpRequestFactorySelector;
+import org.springframework.web.client.RestTemplate;
 
 /**
  * <p>This is the central class for interacting with Instagram.</p>
@@ -26,7 +32,11 @@ public class InstagramTemplate extends AbstractOAuth2ApiBinding implements Insta
 
     private UserOperations userOperations;
 
+    private MediaOperations mediaOperations;
+
     private String applicationScope;
+
+    private ObjectMapper objectMapper;
 
     /**
      * Create a new instance of InstagramTemplate.
@@ -67,6 +77,11 @@ public class InstagramTemplate extends AbstractOAuth2ApiBinding implements Insta
         return userOperations;
     }
 
+    @Override
+    public MediaOperations mediaOperations() {
+        return mediaOperations;
+    }
+
     public String getApplicationScope() {
         return applicationScope;
     }
@@ -79,8 +94,29 @@ public class InstagramTemplate extends AbstractOAuth2ApiBinding implements Insta
     }
 
     private void initSubApis() {
-        userOperations = new UserTemplate(getRestTemplate(), isAuthorized());
-        tagOperations = new TagTemplate(getRestTemplate(), isAuthorized());
+        userOperations = new UserTemplate(this, isAuthorized());
+        tagOperations = new TagTemplate(this, isAuthorized());
+        mediaOperations = new MediaTemplate(this, isAuthorized());
+    }
+
+    // AbstractOAuth2ApiBinding hooks
+    @Override
+    protected OAuth2Version getOAuth2Version() {
+        return OAuth2Version.DRAFT_10;
+    }
+
+    @Override
+    protected void configureRestTemplate(RestTemplate restTemplate) {
+        restTemplate.setErrorHandler(new InstagramErrorHandler());
+    }
+
+    @Override
+    protected MappingJackson2HttpMessageConverter getJsonMessageConverter() {
+        MappingJackson2HttpMessageConverter converter = super.getJsonMessageConverter();
+        objectMapper = new ObjectMapper();
+        objectMapper.registerModule(new InstagramModule());
+        converter.setObjectMapper(objectMapper);
+        return converter;
     }
 
 }

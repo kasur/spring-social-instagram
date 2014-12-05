@@ -19,4 +19,12 @@ public interface UserOperations {
      */
     InstagramProfile getUserProfile();
 
+    /**
+     * Retrieves the profile for the specified user id.
+     * @return the user's profile information.
+     * @throws ApiException if there is an error while communicating with Instagram.
+     * @throws MissingAuthorizationException if InstagramTemplate was not created with an access token.
+     */
+    InstagramProfile getUserProfile(String userId);
+
 }

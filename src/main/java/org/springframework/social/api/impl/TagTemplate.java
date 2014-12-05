@@ -3,24 +3,19 @@ package org.springframework.social.api.impl;
 import org.springframework.social.api.*;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.Collections;
+
 /**
  * @author erusak.
  */
 public class TagTemplate extends AbstractInstagramOperations implements TagOperations {
 
-    private final RestTemplate restTemplate;
-
-    public TagTemplate(RestTemplate restTemplate, boolean isAuthorizedForUser) {
-        super(isAuthorizedForUser);
-        this.restTemplate = restTemplate;
-    }
-
-    public InstagramProfile getUserProfile(String userId) {
-        return restTemplate.getForObject(buildUri("users/{userId}").toASCIIString(), InstagramProfile.class, userId);
+    public TagTemplate(InstagramTemplate instagramTemplate, boolean isAuthorizedForUser) {
+        super(instagramTemplate,isAuthorizedForUser);
     }
 
     @Override
-    public PagedList<Media> getRecentMedia(String tag, PagingParameters pagedListParameters) {
+    public PagedCollection<Media> getRecentMedia(String tag, PagingParameters pagedListParameters) {
         // TODO implemented
         throw new UnsupportedOperationException("[instagram][getRecentMedia is not supported yet]");
     }

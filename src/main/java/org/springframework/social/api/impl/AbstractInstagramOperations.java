@@ -6,6 +6,7 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 
 import java.net.URI;
+import java.util.Map;
 
 /**
  * @author erusak.
@@ -14,14 +15,24 @@ abstract class AbstractInstagramOperations {
 
     private final boolean isAuthorized;
 
-    AbstractInstagramOperations(boolean isAuthorized) {
+    private final InstagramTemplate instagramTemplate;
+
+    AbstractInstagramOperations(InstagramTemplate instagram, boolean isAuthorized) {
+        this.instagramTemplate = instagram;
         this.isAuthorized = isAuthorized;
     }
+
 
     protected void requireAuthorization() {
         if(!isAuthorized) {
             throw new MissingAuthorizationException("instagram");
         }
+    }
+
+
+    protected <T> T get(URI uri, Class<T> returnType, Map<String, ?> pathVariables) {
+
+        return instagramTemplate.getRestTemplate().getForObject(uri.toASCIIString(), returnType, pathVariables);
     }
 
     protected URI buildUri(String path) {

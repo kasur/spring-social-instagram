@@ -2,18 +2,16 @@ package org.springframework.social.api.impl;
 
 import org.springframework.social.api.InstagramProfile;
 import org.springframework.social.api.UserOperations;
-import org.springframework.web.client.RestTemplate;
+
+import java.util.Collections;
 
 /**
  * @author erusak.
  */
 public class UserTemplate extends AbstractInstagramOperations implements UserOperations {
 
-    private final RestTemplate restTemplate;
-
-    public UserTemplate(RestTemplate restTemplate, boolean isAuthorizedForUser) {
-        super(isAuthorizedForUser);
-        this.restTemplate = restTemplate;
+    public UserTemplate(InstagramTemplate instagramTemplate, boolean isAuthorizedForUser) {
+        super(instagramTemplate, isAuthorizedForUser);
     }
 
     @Override
@@ -22,8 +20,9 @@ public class UserTemplate extends AbstractInstagramOperations implements UserOpe
         return getUserProfile("self");
     }
 
+    @Override
     public InstagramProfile getUserProfile(String userId) {
-        return restTemplate.getForObject(buildUri("users/{userId}").toASCIIString(), InstagramProfile.class, userId);
+        return get(buildUri("users/{userId}"), InstagramProfile.class, Collections.singletonMap("userId", userId));
     }
     
 }

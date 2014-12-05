@@ -22,4 +22,11 @@ public interface Instagram extends ApiBinding {
      */
     UserOperations userOperations();
 
+
+    /**
+     * API for performing operations on Instagram medias.
+     * @return {@link MediaOperations}
+     */
+    MediaOperations mediaOperations();
+
 }

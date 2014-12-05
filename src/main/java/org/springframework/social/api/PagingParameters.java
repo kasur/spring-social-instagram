@@ -8,53 +8,34 @@ import java.io.Serializable;
 /**
  * @author erusak.
  */
-public class PagingParameters implements Serializable {
+public class PagingParameters extends InstagramObject implements Serializable {
 
-    private final Integer limit;
-
-    private final Integer offset;
-
-    private final Long since;
-
-    private final Long until;
+    private String nextUrl;
+    private long nextMaxId;
+    private long nextMinId;
 
     /**
-     * Constructs a PagedListParameters.
-     * @param limit The number of items to limit the list to.
-     * @param offset The offset into the full result list to start this list at.
-     * @param since The beginning timestamp bound for time-sensitive content (e.g., posts, comments, etc).
-     * @param until The ending timestamp bound for time-sensitive content (e.g., posts, comments, etc).
+     *
+     * @param nextUrl next url that should be used when the object is passed along with request params
+     * @param nextMaxId next_max_id in terms of Instagram definition
+     * @param nextMinId next_min_id int terms of Instagram definition
      */
-    public PagingParameters(Integer limit, Integer offset, Long since, Long until) {
-        this.limit = limit;
-        this.offset = offset;
-        this.since = since;
-        this.until = until;
+    public PagingParameters(String nextUrl, long nextMaxId, long nextMinId) {
+        this.nextUrl = nextUrl;
+        this.nextMaxId = nextMaxId;
+        this.nextMinId = nextMinId;
     }
 
-    public Integer getLimit() {
-        return limit;
+    public String getNextUrl() {
+        return nextUrl;
     }
 
-    public Integer getOffset() {
-        return offset;
+    public long getNextMaxId() {
+        return nextMaxId;
     }
 
-    public Long getSince() {
-        return since;
-    }
-
-    public Long getUntil() {
-        return until;
-    }
-
-    public MultiValueMap<String, String> toMap() {
-        MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
-        if (limit != null) { map.set("limit", String.valueOf(limit)); }
-        if (offset != null) { map.set("offset", String.valueOf(offset)); }
-        if (since != null) { map.set("since", String.valueOf(since)); }
-        if (until != null) { map.set("until", String.valueOf(until)); }
-        return map;
+    public long getNextMinId() {
+        return nextMinId;
     }
 
 }

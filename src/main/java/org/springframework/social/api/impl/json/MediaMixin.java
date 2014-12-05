@@ -42,4 +42,5 @@ abstract class MediaMixin extends InstagramObjectMixin {
 
         }
     }
+
 }
