@@ -1,7 +1,6 @@
 package org.springframework.social.instagram.api.impl.json;
 
 import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.JsonDeserializer;
@@ -19,18 +18,16 @@ abstract class AbstractInstagramDeserializer<T> extends JsonDeserializer<T> {
 
     @Override
     public T deserialize(JsonParser jsonParser, DeserializationContext deserializationContext)
-            throws IOException, JsonProcessingException {
+            throws IOException {
 
         ObjectMapper mapper = new ObjectMapper();
         mapper.registerModule(new InstagramModule());
 
-        TypeFactory typeFactory = deserializationContext.getTypeFactory();
-
-        JavaType javaType = typeFactory.constructParametricType(InstagramEnvelope.class, constructType(typeFactory));
+        JavaType javaType = TypeFactory.defaultInstance().constructParametricType(InstagramEnvelope.class, constructType());
 
         return mapper.readValue(jsonParser, javaType);
     }
 
-    abstract JavaType constructType(TypeFactory typeFactory);
+    abstract JavaType constructType();
 
 }

@@ -22,7 +22,7 @@ public class UserTemplate extends AbstractInstagramOperations implements UserOpe
 
     @Override
     public InstagramProfile getUserProfile(String userId) {
-        return get(buildUri("users/{userId}"), InstagramProfile.class, Collections.singletonMap("userId", userId));
+        return get("users/{userId}", InstagramProfile.class, Collections.singletonMap("userId", userId));
     }
     
 }

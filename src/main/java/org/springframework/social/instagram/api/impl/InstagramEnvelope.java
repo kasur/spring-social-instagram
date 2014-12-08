@@ -1,13 +1,11 @@
 package org.springframework.social.instagram.api.impl;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.social.instagram.api.InstagramObject;
 
 /**
  * @author erusak.
  */
-@JsonIgnoreProperties(ignoreUnknown = true)
-public class InstagramEnvelope<T> extends InstagramObject {
+public abstract class InstagramEnvelope<T> extends InstagramObject {
 
     private final T payload;
 

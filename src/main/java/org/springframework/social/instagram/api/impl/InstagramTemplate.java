@@ -14,6 +14,7 @@ import org.springframework.social.support.ClientHttpRequestFactorySelector;
 import org.springframework.social.support.URIBuilder;
 import org.springframework.web.client.RestTemplate;
 
+import java.net.URI;
 import java.util.Objects;
 
 /**
@@ -126,7 +127,7 @@ public class InstagramTemplate extends AbstractOAuth2ApiBinding implements Insta
         restTemplate.setErrorHandler(new InstagramErrorHandler());
     }
 
-    public URIBuilder withAccessToken(String uri) {
+    public URIBuilder withAccessToken(URI uri) {
         return (accessToken == null)
                 ? URIBuilder.fromUri(uri).queryParam("client_id", clientId)
                 : URIBuilder.fromUri(uri).queryParam("access_token", accessToken);

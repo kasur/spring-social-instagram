@@ -18,7 +18,7 @@ public class Media extends InstagramObject {
 
     private final String id;
 
-    public Media(Type type, List<String> tags, long createdTime, String id) {
+    public Media(String id, long createdTime, Type type, List<String> tags) {
         this.type = type;
         this.tags = tags;
         this.createdTime = createdTime;

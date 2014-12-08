@@ -17,7 +17,7 @@ public class MediaTemplate extends AbstractInstagramOperations implements MediaO
 
     @Override
     public Media getMedia(String mediaId) {
-        return get(buildUri("media/{media-id}"), MediaContainer.class, Collections.singletonMap("media-id", mediaId))
+        return get("media/{media-id}", MediaContainer.class, Collections.singletonMap("media-id", mediaId))
                 .getPayload();
     }
 }

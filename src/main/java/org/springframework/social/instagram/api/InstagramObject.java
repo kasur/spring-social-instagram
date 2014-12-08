@@ -8,11 +8,7 @@ import java.util.Map;
  */
 public abstract class InstagramObject {
 
-    private final Map<String,Object> extraData;
-
-    public InstagramObject() {
-        this.extraData = new HashMap<>();
-    }
+    private final Map<String,Object> extraData = new HashMap<>();
 
     /**
      * @return Any fields in response from Instagram that are otherwise not mapped to any properties.

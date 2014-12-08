@@ -9,6 +9,7 @@ import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import java.io.IOException;
+import java.util.List;
 
 import static org.springframework.social.instagram.api.Media.Type;
 import static org.springframework.social.instagram.api.Media.Type.UNKNOWN;
@@ -23,12 +24,11 @@ import static org.springframework.social.instagram.api.Media.Type.UNKNOWN;
 abstract class MediaMixin extends InstagramObjectMixin {
 
     @JsonCreator
-    MediaMixin(
+    public MediaMixin(
             @JsonProperty("id") String id,
             @JsonProperty("created_time") long createdTime,
-            @JsonProperty("tags") String tags,
-            @JsonProperty("type") @JsonDeserialize(using = TypeDeserializer.class) String type
-
+            @JsonProperty("type") @JsonDeserialize(using = TypeDeserializer.class) Type type,
+            @JsonProperty("tags") List<String> tags
     ){}
 
     private static final class TypeDeserializer extends JsonDeserializer<Type> {
