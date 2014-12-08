@@ -1,10 +1,14 @@
 package org.springframework.social.instagram.api.impl;
 
 import org.springframework.social.MissingAuthorizationException;
+import org.springframework.social.instagram.api.PagingParameters;
+import org.springframework.social.support.URIBuilder;
 import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.util.UriTemplate;
 
 import java.net.URI;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -29,6 +33,10 @@ abstract class AbstractInstagramOperations {
         }
     }
 
+    protected <T> T getWithCompleteUri(String completeUri, Class<T> returnType) {
+        return instagramTemplate.getRestTemplate()
+                .getForObject(URIBuilder.fromUri(completeUri).build().toASCIIString(), returnType);
+    }
 
     protected <T> T get(String uriTemplate, Class<T> returnType,
                         Map<String, ?> pathVars, Map<String, List<String>> queryParams) {

@@ -18,8 +18,7 @@ public class TagTemplate extends AbstractInstagramOperations implements TagOpera
 
     @Override
     public PagedCollection<Media> getRecentMedia(String tag, PagingParameters pagedListParameters) {
-        // TODO implemented
-        throw new UnsupportedOperationException("[instagram][getRecentMedia is not supported yet]");
+        return getWithCompleteUri(pagedListParameters.getNextUrl(), MediaPagedCollectionContainer.class).getPayload();
     }
 
     @Override

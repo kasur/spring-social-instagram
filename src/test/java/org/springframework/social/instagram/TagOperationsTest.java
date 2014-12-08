@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.social.instagram.api.Instagram;
 import org.springframework.social.instagram.api.Media;
 import org.springframework.social.instagram.api.PagedCollection;
+import org.springframework.social.instagram.api.PagingParameters;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.Assert;
@@ -26,6 +27,10 @@ public class TagOperationsTest extends AbstractTestNGSpringContextTests {
     public void getRecentMediaByTagName() {
         PagedCollection<Media> medias = instagram.tagOperations().getRecentMedia(TAG_NAME);
         Assert.assertNotNull(medias);
+
+        PagingParameters pagingParams = medias.getPagingParams();
+        PagedCollection<Media> nextMedias = instagram.tagOperations().getRecentMedia(TAG_NAME, pagingParams);
+        Assert.assertNotNull(nextMedias);
     }
 
 }

@@ -57,9 +57,6 @@ public class InstagramTemplate extends AbstractOAuth2ApiBinding implements Insta
      * Those operations requiring authentication will throw {@link NotAuthorizedException}.
      */
     public InstagramTemplate(final String clientId, final String clientSecret) {
-        /*this.clientId = Objects.requireNonNull(clientId, "[Client id is required]");
-        this.clientSecret = Objects.requireNonNull(clientSecret, "[Client secret is required as  ]");
-        this.accessToken = null;*/
         this(clientId, clientSecret, null);
         initialize();
     }
