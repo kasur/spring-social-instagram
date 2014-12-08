@@ -18,11 +18,14 @@ public class Media extends InstagramObject {
 
     private final String id;
 
-    public Media(String id, long createdTime, Type type, List<String> tags) {
+    private final Long likes;
+
+    public Media(String id, long createdTime, Type type, List<String> tags, Long likes) {
         this.type = type;
         this.tags = tags;
         this.createdTime = createdTime;
         this.id = id;
+        this.likes = likes;
     }
 
     public Type getType() {
@@ -42,4 +45,8 @@ public class Media extends InstagramObject {
     }
 
     public static enum Type { IMAGE, VIDEO, UNKNOWN }
+
+    public Long getLikes() {
+        return likes;
+    }
 }
