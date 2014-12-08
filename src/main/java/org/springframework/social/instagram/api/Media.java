@@ -20,12 +20,18 @@ public class Media extends InstagramObject {
 
     private final Long likes;
 
-    public Media(String id, long createdTime, Type type, List<String> tags, Long likes) {
+    private final String link;
+
+    private final String userId;
+
+    public Media(String id, long createdTime, Type type, List<String> tags, Long likes, String link, String userId) {
         this.type = type;
         this.tags = tags;
         this.createdTime = createdTime;
         this.id = id;
         this.likes = likes;
+        this.link = link;
+        this.userId = userId;
     }
 
     public Type getType() {
@@ -48,5 +54,13 @@ public class Media extends InstagramObject {
 
     public Long getLikes() {
         return likes;
+    }
+
+    public String getLink() {
+        return link;
+    }
+
+    public String getUserId() {
+        return userId;
     }
 }

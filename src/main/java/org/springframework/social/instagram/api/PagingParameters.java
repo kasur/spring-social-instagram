@@ -1,15 +1,13 @@
 package org.springframework.social.instagram.api;
 
-import java.io.Serializable;
-
 /**
  * @author erusak.
  */
-public class PagingParameters extends InstagramObject implements Serializable {
+public class PagingParameters extends InstagramObject {
 
-    private String nextUrl;
-    private long nextMaxId;
-    private long nextMinId;
+    private final String nextUrl;
+    private final String nextMaxId;
+    private final String nextMinId;
 
     /**
      *
@@ -17,7 +15,7 @@ public class PagingParameters extends InstagramObject implements Serializable {
      * @param nextMaxId next_max_id in terms of Instagram definition
      * @param nextMinId next_min_id int terms of Instagram definition
      */
-    public PagingParameters(String nextUrl, long nextMaxId, long nextMinId) {
+    public PagingParameters(String nextUrl, String nextMaxId, String nextMinId) {
         this.nextUrl = nextUrl;
         this.nextMaxId = nextMaxId;
         this.nextMinId = nextMinId;
@@ -27,11 +25,11 @@ public class PagingParameters extends InstagramObject implements Serializable {
         return nextUrl;
     }
 
-    public long getNextMaxId() {
+    public String getNextMaxId() {
         return nextMaxId;
     }
 
-    public long getNextMinId() {
+    public String getNextMinId() {
         return nextMinId;
     }
 

@@ -16,4 +16,12 @@ public interface TagOperations {
      */
     PagedCollection<Media> getRecentMedia(String tag, PagingParameters pagingParameters);
 
+    /**
+     * Get a list of recently tagged media.
+     * Note that this media is ordered by when the media was tagged with this tag, rather than the order it was posted
+     * @param tag tag name of interest
+     * @return a list of recent {@link Media}s for the specified tag
+     */
+    PagedCollection<Media> getRecentMedia(String tag);
+
 }

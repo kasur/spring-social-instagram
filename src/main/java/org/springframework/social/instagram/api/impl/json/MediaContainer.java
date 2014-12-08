@@ -9,7 +9,7 @@ import org.springframework.social.instagram.api.impl.InstagramEnvelope;
  */
 public class MediaContainer extends InstagramEnvelope<Media> {
 
-    public MediaContainer(Media payload) {
+    protected MediaContainer(Media payload) {
         super(payload);
     }
 }

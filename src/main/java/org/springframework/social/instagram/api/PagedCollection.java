@@ -1,23 +1,25 @@
 package org.springframework.social.instagram.api;
 
 import java.util.Collection;
+import java.util.Collections;
+import java.util.LinkedList;
 
 /**
  * @author erusak.
  */
 public class PagedCollection<T> {
 
-    private final Collection<T> data;
+    private final Collection<T> collection;
 
     private final PagingParameters pagingParams;
 
-    public PagedCollection(Collection<T> data, PagingParameters pagingParams) {
-        this.data = data;
+    public PagedCollection(LinkedList<T> collection, PagingParameters pagingParams) {
+        this.collection = collection == null ? Collections.<T>emptyList() : collection ;
         this.pagingParams = pagingParams;
     }
 
-    public Collection<T> getData() {
-        return data;
+    public Collection<T> getCollection() {
+        return collection;
     }
 
     public PagingParameters getPagingParams() {
