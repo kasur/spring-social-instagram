@@ -29,8 +29,10 @@ public class TagOperationsTest extends AbstractTestNGSpringContextTests {
         Assert.assertNotNull(medias);
 
         PagingParameters pagingParams = medias.getPagingParams();
-        PagedCollection<Media> nextMedias = instagram.tagOperations().getRecentMedia(TAG_NAME, pagingParams);
+        PagedCollection<Media> nextMedias = instagram.tagOperations().getRecentMedia(TAG_NAME, pagingParams, 1);
         Assert.assertNotNull(nextMedias);
+        Assert.assertTrue(nextMedias.getCollection().size() == 1);
+
     }
 
 }

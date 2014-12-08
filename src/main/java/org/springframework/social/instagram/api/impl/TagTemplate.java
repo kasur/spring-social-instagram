@@ -18,13 +18,25 @@ public class TagTemplate extends AbstractInstagramOperations implements TagOpera
 
     @Override
     public PagedCollection<Media> getRecentMedia(String tag, PagingParameters pagedListParameters) {
-        return getWithCompleteUri(pagedListParameters.getNextUrl(), MediaPagedCollectionContainer.class).getPayload();
+        return getRecentMedia(tag, pagedListParameters, -1);
+    }
+
+    @Override
+    public PagedCollection<Media> getRecentMedia(String tag, PagingParameters pagingParameters, int count) {
+        return getWithCompleteUri(pagingParameters.getNextUrl(), MediaPagedCollectionContainer.class, count).getPayload();
+    }
+
+    @Override
+    public PagedCollection<Media> getRecentMedia(String tag, int count) {
+        return get("tags/{tag-name}/media/recent", MediaPagedCollectionContainer.class,
+                Collections.singletonMap("tag-name", tag),
+                count
+        ).getPayload();
     }
 
     @Override
     public PagedCollection<Media> getRecentMedia(String tag) {
-        return get("tags/{tag-name}/media/recent", MediaPagedCollectionContainer.class,
-                Collections.singletonMap("tag-name", tag)
-        ).getPayload();
+        return getRecentMedia(tag, -1);
     }
+
 }
