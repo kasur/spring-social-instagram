@@ -6,14 +6,19 @@ package org.springframework.social.instagram.api;
  *
  * @author erusak.
  */
+//TODO [erusak] Remove default protected constructor and make fields final
 public class InstagramProfile extends InstagramObject {
 
-    private final String id;
-    private final String userName;
-    private final String fullName;
-    private final String profilePicture;
-    private final String bio;
-    private final String website;
+    private /*final */String id;
+    private /*final */String userName;
+    private /*final */String fullName;
+    private /*final */String profilePicture;
+    private /*final */String bio;
+    private /*final */String website;
+
+
+    //TODO [erusak] remove it
+    protected InstagramProfile(){}
 
     public InstagramProfile(String id, String userName, String fullName, String profilePicture,
                             String bio, String website) {

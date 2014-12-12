@@ -7,6 +7,7 @@ import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import org.springframework.social.instagram.api.InstagramProfile;
 
 import java.io.IOException;
 import java.util.List;
@@ -31,7 +32,7 @@ abstract class MediaMixin extends InstagramObjectMixin {
             @JsonProperty("tags") List<String> tags,
             @JsonProperty("likes") @JsonDeserialize(using = LikesDeserializer.class) Long likes,
             @JsonProperty("link") String link,
-            @JsonProperty("user") @JsonDeserialize(using = UserDeserializer.class) String userId
+            @JsonProperty("user") InstagramProfile ownerProfile
     ){}
 
     private static final class TypeDeserializer extends JsonDeserializer<Type> {
