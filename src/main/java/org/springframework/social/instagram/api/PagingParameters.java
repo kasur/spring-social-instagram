@@ -1,5 +1,7 @@
 package org.springframework.social.instagram.api;
 
+import java.util.Objects;
+
 /**
  * @author erusak.
  */
@@ -31,6 +33,19 @@ public class PagingParameters extends InstagramObject {
 
     public String getNextMinId() {
         return nextMinId;
+    }
+
+    @Override
+    public String toString() {
+        return this.getClass().getSimpleName()
+                + toStringEntry("nextUrl", nextUrl)
+                + toStringEntry("nextMaxId", nextMaxId)
+                + toStringEntry("nextMinId", nextMinId);
+    }
+
+
+    private static String toStringEntry(String fieldName, Object fieldValue) {
+        return "[" + fieldName + "=" + Objects.toString(fieldValue) + "]";
     }
 
 }

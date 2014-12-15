@@ -45,6 +45,10 @@ public class Media extends InstagramObject {
         return tags;
     }
 
+    /**
+     * returns UNIX based seconds for the creation time
+     * @return UNIX based seconds
+     */
     public long getCreatedTime() {
         return createdTime;
     }
