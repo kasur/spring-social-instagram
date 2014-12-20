@@ -8,12 +8,15 @@ package org.springframework.social.instagram.api;
  */
 public class InstagramProfile extends InstagramObject {
 
-    private final String id;
-    private final String userName;
-    private final String fullName;
-    private final String profilePicture;
-    private final String bio;
-    private final String website;
+    private /*final*/ String id;
+    private /*final */String userName;
+    private /*final */String fullName;
+    private /*final */String profilePicture;
+    private /*final */String bio;
+    private /*final */String website;
+
+    //TODO [erusak] remove this filthy stuff once dumb client API fixed with mixin
+    protected InstagramProfile() {}
 
     public InstagramProfile(String id, String userName, String fullName, String profilePicture,
                             String bio, String website) {

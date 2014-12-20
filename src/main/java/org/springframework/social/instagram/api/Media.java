@@ -10,21 +10,24 @@ import java.util.List;
  */
 public class Media extends InstagramObject {
 
-    private final Type type;
+    private /*final*/ Type type;
 
-    private final List<String> tags;
+    private /*final*/ List<String> tags;
 
-    private final long createdTime;
+    private /*final*/ long createdTime;
 
-    private final String id;
+    private /*final*/ String id;
 
-    private final Long likes;
+    private /*final */Long likes;
 
-    private final String link;
+    private /*final */String link;
 
-    private final InstagramProfile ownerProfile;
+    private /*final */InstagramProfile ownerProfile;
 
-    private final String caption;
+    private /*final */String caption;
+
+    //TODO [erusak] remove this filthy stuff once dumb client API fixed with mixin
+    protected Media() {}
 
     public Media(String id, long createdTime, Type type, List<String> tags, Long likes, String link,
                  InstagramProfile ownerProfile, String caption) {
