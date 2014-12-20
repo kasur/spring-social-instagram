@@ -8,26 +8,26 @@ import java.util.List;
  *
  * @author erusak.
  */
-//TODO [erusak] Remove default protected constructor and make fields final
 public class Media extends InstagramObject {
 
-    private /*final*/ Type type;
+    private final Type type;
 
-    private /*final*/ List<String> tags;
+    private final List<String> tags;
 
-    private /*final*/ long createdTime;
+    private final long createdTime;
 
-    private /*final*/ String id;
+    private final String id;
 
-    private /*final*/ Long likes;
+    private final Long likes;
 
-    private /*final*/ String link;
+    private final String link;
 
-    private /*final*/ InstagramProfile ownerProfile;
+    private final InstagramProfile ownerProfile;
 
-    protected Media(){}
+    private final String caption;
 
-    public Media(String id, long createdTime, Type type, List<String> tags, Long likes, String link, InstagramProfile ownerProfile) {
+    public Media(String id, long createdTime, Type type, List<String> tags, Long likes, String link,
+                 InstagramProfile ownerProfile, String caption) {
         this.type = type;
         this.tags = tags;
         this.createdTime = createdTime;
@@ -35,6 +35,7 @@ public class Media extends InstagramObject {
         this.likes = likes;
         this.link = link;
         this.ownerProfile = ownerProfile;
+        this.caption = caption;
     }
 
     public Type getType() {
@@ -69,5 +70,9 @@ public class Media extends InstagramObject {
 
     public InstagramProfile getOwnerProfile() {
         return ownerProfile;
+    }
+
+    public String getCaption() {
+        return caption;
     }
 }

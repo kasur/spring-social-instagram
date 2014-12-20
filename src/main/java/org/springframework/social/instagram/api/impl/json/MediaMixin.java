@@ -32,7 +32,8 @@ abstract class MediaMixin extends InstagramObjectMixin {
             @JsonProperty("tags") List<String> tags,
             @JsonProperty("likes") @JsonDeserialize(using = LikesDeserializer.class) Long likes,
             @JsonProperty("link") String link,
-            @JsonProperty("user") InstagramProfile ownerProfile
+            @JsonProperty("user") InstagramProfile ownerProfile,
+            @JsonProperty("caption") @JsonDeserialize(using = CaptionDeserializer.class) String caption
     ){}
 
     private static final class TypeDeserializer extends JsonDeserializer<Type> {
@@ -64,18 +65,18 @@ abstract class MediaMixin extends InstagramObjectMixin {
 
     }
 
-    private static final class UserDeserializer extends JsonDeserializer<String> {
+    private static final class CaptionDeserializer extends JsonDeserializer<String> {
         @Override
         public String deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException {
-            return jsonParser.readValueAs(UserWrapper.class).userId;
+            return jsonParser.readValueAs(CaptionWrapper.class).text;
         }
 
         @JsonIgnoreProperties(ignoreUnknown = true)
-        private static final class UserWrapper {
-            private final String userId;
+        private static final class CaptionWrapper {
+            private final String text;
             @JsonCreator
-            private UserWrapper(@JsonProperty("id") String userId) {
-                this.userId = userId;
+            private CaptionWrapper(@JsonProperty("text") String text) {
+                this.text = text;
             }
         }
 
